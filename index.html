@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02kkk电影-热门影视推荐与观影指南</title>
+    <meta name="description" content="02kkk电影为您提供最新热门电影推荐、经典影片盘点、影视类型解析与观影指南，帮助您快速找到值得一看的精彩影片。">
+    <meta name="keywords" content="02kkk电影,电影推荐,热门电影,电影指南,观影指南,影视推荐">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #f8f4f0;
+            color: #2d2a26;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* header */
+        .site-header {
+            background: #1c1a17;
+            padding: 18px 0;
+            border-bottom: 4px solid #e6a23c;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .header-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f5e6c8;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #e6a23c;
+        }
+        .nav-list {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-list a {
+            color: #cfc6b8;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 6px 2px;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-list a:hover, .nav-list a.active {
+            color: #e6a23c;
+            border-bottom-color: #e6a23c;
+        }
+        /* hero */
+        .hero {
+            background: linear-gradient(135deg, #2b2723 0%, #4a3f34 100%);
+            color: #fdf6ec;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1 1 300px;
+        }
+        .hero-text h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .hero-text p {
+            font-size: 17px;
+            color: #d9cfc0;
+            margin-bottom: 24px;
+            max-width: 540px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #e6a23c;
+            color: #1c1a17;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .hero-art {
+            flex: 0 0 260px;
+            text-align: center;
+            font-size: 100px;
+            line-height: 1;
+            background: rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        /* section */
+        .section {
+            margin-bottom: 48px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d2a26;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 28px;
+            background: #e6a23c;
+            border-radius: 3px;
+        }
+        .section-sub {
+            color: #8a7d6e;
+            font-size: 15px;
+            margin-top: -14px;
+            margin-bottom: 24px;
+        }
+        /* grid cards */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .movie-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #efe9e2;
+        }
+        .movie-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+        }
+        .movie-poster {
+            height: 180px;
+            background: linear-gradient(145deg, #d8cfc2, #b8aa97);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .movie-poster .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e6a23c;
+            color: #1c1a17;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .movie-info {
+            padding: 16px 18px 20px;
+        }
+        .movie-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .movie-info .meta {
+            font-size: 13px;
+            color: #9b8e7f;
+            margin-bottom: 10px;
+        }
+        .movie-info .desc {
+            font-size: 14px;
+            color: #5f554a;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .rating {
+            color: #e6a23c;
+            font-weight: 700;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+        /* 榜单列表 */
+        .list-panel {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #efe9e2;
+        }
+        .rank-list {
+            list-style: none;
+        }
+        .rank-list li {
+            padding: 14px 0;
+            border-bottom: 1px dashed #e8dfd5;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .rank-list li:last-child {
+            border-bottom: none;
+        }
+        .rank-num {
+            font-size: 22px;
+            font-weight: 800;
+            color: #cbb9a4;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .rank-item-title {
+            font-weight: 600;
+            font-size: 16px;
+            flex: 1;
+        }
+        .rank-item-cat {
+            font-size: 13px;
+            color: #a08d7a;
+            background: #f5efe8;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        /* 分类卡片 */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+        }
+        .cat-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 24px 16px;
+            text-align: center;
+            border: 1px solid #e8dfd5;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .cat-card:hover {
+            background: #fdf8f2;
+            border-color: #d8b998;
+        }
+        .cat-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .cat-name {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        .cat-count {
+            font-size: 13px;
+            color: #9b8e7f;
+        }
+        /* 双栏布局 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        @media (max-width: 800px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* 观影指南 */
+        .guide-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            border-left: 5px solid #e6a23c;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        }
+        .guide-box h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .guide-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .guide-list li {
+            padding: 8px 0;
+            display: flex;
+            gap: 10px;
+            font-size: 15px;
+        }
+        .guide-list li::before {
+            content: '▶';
+            color: #e6a23c;
+            font-size: 12px;
+            align-self: center;
+        }
+        /* FAQ */
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 14px;
+            border: 1px solid #efe9e2;
+        }
+        .faq-item h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #3d362e;
+        }
+        .faq-item p {
+            font-size: 15px;
+            color: #5f554a;
+        }
+        /* footer */
+        .site-footer {
+            background: #1c1a17;
+            color: #a89b8c;
+            padding: 40px 0 24px;
+            margin-top: 48px;
+            text-align: center;
+        }
+        .site-footer .copyright {
+            font-size: 14px;
+            margin-top: 16px;
+            border-top: 1px solid #3a332b;
+            padding-top: 18px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #b7a999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-links a:hover {
+            color: #e6a23c;
+        }
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .header-wrap {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-list {
+                gap: 16px;
+                justify-content: center;
+            }
+            .hero {
+                padding: 40px 0;
+            }
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            .hero-art {
+                flex-basis: 100%;
+                font-size: 70px;
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 21px;
+            }
+            .movie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 16px;
+            }
+            .list-panel {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <header class="site-header">
+        <div class="container header-wrap">
+            <a href="#" class="logo">02kkk<span>电影</span></a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">热门推荐</a></li>
+                    <li><a href="#">高分榜单</a></li>
+                    <li><a href="#">最新更新</a></li>
+                    <li><a href="#">观影指南</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 首屏 -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h1>发现值得一看的精彩电影</h1>
+                    <p>02kkk电影专注热门影片推荐与深度解读，涵盖动作、剧情、科幻、动画等多种类型。无论你是资深影迷还是偶尔观影，都能在这里找到合口味的作品。</p>
+                    <span class="hero-badge">🎬 每日更新片单</span>
+                </div>
+                <div class="hero-art">🎥</div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- 分类导航 -->
+            <section class="section">
+                <h2 class="section-title">影片分类</h2>
+                <div class="cat-grid">
+                    <div class="cat-card">
+                        <div class="cat-icon">🔥</div>
+                        <div class="cat-name">动作冒险</div>
+                        <div class="cat-count">热血 · 特效</div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon">🌌</div>
+                        <div class="cat-name">科幻奇幻</div>
+                        <div class="cat-count">脑洞 · 宇宙</div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon">💛</div>
+                        <div class="cat-name">剧情文艺</div>
+                        <div class="cat-count">深度 · 情感</div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon">😄</div>
+                        <div class="cat-name">喜剧搞笑</div>
+                        <div class="cat-count">轻松 · 解压</div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon">👻</div>
+                        <div class="cat-name">悬疑惊悚</div>
+                        <div class="cat-count">烧脑 · 紧张</div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon">🎨</div>
+                        <div class="cat-name">动画佳作</div>
+                        <div class="cat-count">画风 · 治愈</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 热门推荐 + 榜单 -->
+            <section class="section two-col">
+                <div>
+                    <h2 class="section-title">本周热门推荐</h2>
+                    <p class="section-sub">编辑精选，口碑与热度兼备</p>
+                    <div class="movie-grid">
+                        <article class="movie-card">
+                            <div class="movie-poster"><span class="tag">TOP1</span>🌆</div>
+                            <div class="movie-info">
+                                <h3>落日追踪</h3>
+                                <div class="meta">动作 · 2024 · 118分钟</div>
+                                <div class="desc">一名退役特工为调查旧友失踪案，重返都市暗影之中。</div>
+                                <div class="rating">★★★★☆ 8.6</div>
+                            </div>
+                        </article>
+                        <article class="movie-card">
+                            <div class="movie-poster"><span class="tag">TOP2</span>🚀</div>
+                            <div class="movie-info">
+                                <h3>星际回响</h3>
+                                <div class="meta">科幻 · 2024 · 132分钟</div>
+                                <div class="desc">人类首次接触外星文明，却发现了关于自身的惊人秘密。</div>
+                                <div class="rating">★★★★☆ 8.9</div>
+                            </div>
+                        </article>
+                        <article class="movie-card">
+                            <div class="movie-poster"><span class="tag">TOP3</span>🏔️</div>
+                            <div class="movie-info">
+                                <h3>群山之间</h3>
+                                <div class="meta">剧情 · 2023 · 105分钟</div>
+                                <div class="desc">一位青年回到故乡，在群山环抱的小镇重新寻找生活意义。</div>
+                                <div class="rating">★★★★☆ 8.3</div>
+                            </div>
+                        </article>
+                        <article class="movie-card">
+                            <div class="movie-poster"><span class="tag">新片</span>🎭</div>
+                            <div class="movie-info">
+                                <h3>浮世绘卷</h3>
+                                <div class="meta">动画 · 2024 · 98分钟</div>
+                                <div class="desc">画师少女穿越到百年前的江户，与浮世绘大师相遇。</div>
+                                <div class="rating">★★★★☆ 8.1</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <aside>
+                    <h2 class="section-title">高分口碑榜</h2>
+                    <div class="list-panel">
+                        <ol class="rank-list">
+                            <li>
+                                <span class="rank-num">1</span>
+                                <span class="rank-item-title">肖申克的救赎</span>
+                                <span class="rank-item-cat">剧情</span>
+                            </li>
+                            <li>
+                                <span class="rank-num">2</span>
+                                <span class="rank-item-title">星际穿越</span>
+                                <span class="rank-item-cat">科幻</span>
+                            </li>
+                            <li>
+                                <span class="rank-num">3</span>
+                                <span class="rank-item-title">千与千寻</span>
+                                <span class="rank-item-cat">动画</span>
+                            </li>
+                            <li>
+                                <span class="rank-num">4</span>
+                                <span class="rank-item-title">盗梦空间</span>
+                                <span class="rank-item-cat">科幻</span>
+                            </li>
+                            <li>
+                                <span class="rank-num">5</span>
+                                <span class="rank-item-title">阿甘正传</span>
+                                <span class="rank-item-cat">剧情</span>
+                            </li>
+                            <li>
+                                <span class="rank-num">6</span>
+                                <span class="rank-item-title">疯狂动物城</span>
+                                <span class="rank-item-cat">动画</span>
+                            </li>
+                            <li>
+                                <span class="rank-num">7</span>
+                                <span class="rank-item-title">控方证人</span>
+                                <span class="rank-item-cat">悬疑</span>
+                            </li>
+                        </ol>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- 观影指南 -->
+            <section class="section">
+                <h2 class="section-title">实用观影指南</h2>
+                <div class="guide-box">
+                    <h3>如何快速找到适合你的电影？</h3>
+                    <ul class="guide-list">
+                        <li>先确定想看的心情：想放松还是想烧脑？喜剧或悬疑有完全不同的选择方向。</li>
+                        <li>参考评分与口碑，但不必完全迷信高分。结合预告片和剧情简介判断是否符合口味。</li>
+                        <li>关注导演与演员的过往作品，喜欢某部电影时，可以顺藤摸瓜发现更多优质影片。</li>
+                        <li>利用片单功能收藏感兴趣的影片，方便随时找到下一部想看的电影。</li>
+                        <li>观看前尽量少看剧透评论，保持对剧情的好奇心，观影体验会更好。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="section">
+                <h2 class="section-title">常见问题</h2>
+                <div class="faq-item">
+                    <h4>02kkk电影网站是做什么的？</h4>
+                    <p>这是一个专注于电影推荐与观影参考的资讯类网站，提供热门影片介绍、类型分类、评分参考和观影建议，帮助用户更快找到想看的电影。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>影片信息准确吗？</h4>
+                    <p>本站内容由编辑人工整理，力求信息准确、描述客观。但由于影片资料可能更新，建议结合多方信息参考。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>是否提供在线播放服务？</h4>
+                    <p>本站为电影推荐和资讯平台，不提供任何形式的在线播放或下载服务。请通过正规视频平台观看正版影片。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>多久更新一次内容？</h4>
+                    <p>我们会根据新片上映节奏与用户关注度不定期更新推荐列表和榜单，尽量保持内容的新鲜度。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系合作</a>
+                <a href="#">隐私政策</a>
+                <a href="#">版权声明</a>
+            </div>
+            <p>02kkk电影 · 用心推荐每一部好电影</p>
+            <p class="copyright">© 2024 02kkk电影 保留所有权利</p>
+        </div>
+    </footer>
+</body>
+</html>
