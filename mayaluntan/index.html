@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>maya论坛-三维动画与CG技术交流社区</title>
+    <meta name="description" content="maya论坛是专业的三维动画与CG技术交流社区，提供Maya软件教程、建模技巧、动画制作、材质渲染、插件资源分享及行业资讯，是CG爱好者与从业者的学习互动平台。">
+    <meta name="keywords" content="maya论坛,Maya教程,三维动画,建模,绑定,材质,渲染,CG社区,Autodesk Maya,动画制作,插件资源">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+            background-color: #f2f5f9;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: #2d3748;
+            transition: color 0.2s ease;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部导航 */
+        .top-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 12px 0;
+            border-bottom: 3px solid #f97316;
+        }
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, #f97316, #ea580c);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .logo-text span {
+            color: #f97316;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav-menu a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .nav-menu a:hover {
+            color: #f97316;
+            border-bottom-color: #f97316;
+        }
+        .nav-menu .active {
+            color: #f97316;
+            border-bottom-color: #f97316;
+        }
+        .search-box {
+            display: flex;
+            background: #1e293b;
+            border-radius: 30px;
+            padding: 4px 4px 4px 16px;
+            border: 1px solid #334155;
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #e2e8f0;
+            width: 180px;
+            font-size: 0.9rem;
+        }
+        .search-box button {
+            background: #f97316;
+            border: none;
+            color: #fff;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .search-box button:hover {
+            background: #ea580c;
+        }
+
+        /* 首屏Banner */
+        .hero-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            padding: 60px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(249, 115, 22, 0.05);
+            border-radius: 50%;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(249, 115, 22, 0.15);
+            color: #f97316;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .hero-content h1 span {
+            color: #f97316;
+        }
+        .hero-desc {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 480px;
+            margin-bottom: 30px;
+        }
+        .hero-btn {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #f97316;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+        .btn-primary:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #e2e8f0;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: 1px solid #475569;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            border-color: #f97316;
+            color: #f97316;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* 分类板块 */
+        .category-section {
+            padding: 50px 0 20px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #1e293b;
+            position: relative;
+            padding-left: 16px;
+        }
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 5px;
+            height: 28px;
+            background: #f97316;
+            border-radius: 3px;
+        }
+        .section-more {
+            color: #f97316;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: #f97316;
+        }
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .category-name {
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        .category-topic {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* 内容区域 */
+        .content-section {
+            padding: 30px 0;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        .post-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 18px;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s ease;
+        }
+        .post-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        }
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .post-tag {
+            background: #fff7ed;
+            color: #ea580c;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .post-date {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        .post-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+        .post-title:hover {
+            color: #f97316;
+        }
+        .post-excerpt {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #f1f5f9;
+        }
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .author-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 700;
+        }
+        .author-name {
+            font-size: 0.85rem;
+            color: #475569;
+        }
+        .post-stats {
+            display: flex;
+            gap: 16px;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        .post-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .widget {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            border: 1px solid #e2e8f0;
+        }
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1e293b;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f97316;
+            display: inline-block;
+        }
+        .hot-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .hot-list li:last-child {
+            border-bottom: none;
+        }
+        .hot-rank {
+            background: #e2e8f0;
+            color: #64748b;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .hot-rank.top {
+            background: #f97316;
+            color: #fff;
+        }
+        .hot-link {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .hot-link:hover {
+            color: #f97316;
+        }
+        .resource-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
+        }
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+        .resource-list a:hover {
+            color: #f97316;
+        }
+        .resource-type {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-left: 6px;
+        }
+
+        /* 教程板块 */
+        .tutorial-section {
+            padding: 40px 0;
+            background: #fff;
+        }
+        .tutorial-section .container {
+            background: transparent;
+        }
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .tutorial-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .tutorial-card:hover {
+            border-color: #f97316;
+            transform: translateY(-3px);
+        }
+        .tutorial-level {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .tutorial-level.mid {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        .tutorial-level.adv {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+        .tutorial-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        .tutorial-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+        .tutorial-link {
+            display: inline-block;
+            margin-top: 14px;
+            color: #f97316;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .tutorial-link:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 50px 0;
+        }
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 14px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .faq-item:hover {
+            border-color: #f97316;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.4rem;
+            color: #f97316;
+            font-weight: 400;
+        }
+        .faq-answer {
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            display: none;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #0f172a;
+            padding: 40px 0 20px;
+            margin-top: 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-title {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            font-size: 0.88rem;
+        }
+        .footer-links a:hover {
+            color: #f97316;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 20px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.82rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .nav-menu {
+                width: 100%;
+                overflow-x: auto;
+                gap: 18px;
+                padding-bottom: 5px;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .search-box input {
+                flex: 1;
+                width: auto;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-section {
+                padding: 40px 0;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            .tutorial-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-stats {
+                gap: 15px;
+            }
+            .stat-number {
+                font-size: 1.4rem;
+            }
+            .hero-content h1 {
+                font-size: 1.7rem;
+            }
+            .btn-primary, .btn-outline {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="top-header">
+        <div class="container nav-wrapper">
+            <div class="logo-area">
+                <div class="logo-icon">M</div>
+                <div class="logo-text">MAYA<span>论坛</span></div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="active">首页</a>
+                <a href="#">建模</a>
+                <a href="#">绑定</a>
+                <a href="#">动画</a>
+                <a href="#">材质</a>
+                <a href="#">渲染</a>
+                <a href="#">插件</a>
+                <a href="#">社区</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索教程、问题、资源...">
+                <button>搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首屏Banner -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">🔥 CG技术交流 · 三维动画之家</div>
+                <h1>Maya 学习与<span>交流</span>的专业社区</h1>
+                <p class="hero-desc">从建模到渲染，从入门到精通。maya论坛汇集了大量三维动画爱好者、从业者和行业专家，分享经验、解答疑惑、共同成长。</p>
+                <div class="hero-btn">
+                    <a href="#" class="btn-primary">立即加入论坛</a>
+                    <a href="#" class="btn-outline">浏览热门教程</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50万+</span>
+                        <span class="stat-label">注册用户</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">120万+</span>
+                        <span class="stat-label">技术帖子</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3万+</span>
+                        <span class="stat-label">免费资源</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 分类板块 -->
+    <section class="category-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">技术交流分类</h2>
+                <a href="#" class="section-more">查看全部版块 →</a>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <div class="category-name">建模技术</div>
+                    <div class="category-topic">2.4万主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🦴</div>
+                    <div class="category-name">绑定动画</div>
+                    <div class="category-topic">1.8万主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎬</div>
+                    <div class="category-name">动画表演</div>
+                    <div class="category-topic">1.2万主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💎</div>
+                    <div class="category-name">材质贴图</div>
+                    <div class="category-topic">1.6万主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">☀️</div>
+                    <div class="category-name">灯光渲染</div>
+                    <div class="category-topic">1.1万主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🧩</div>
+                    <div class="category-name">插件开发</div>
+                    <div class="category-topic">6800主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📢</div>
+                    <div class="category-name">行业交流</div>
+                    <div class="category-topic">4200主题</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💼</div>
+                    <div class="category-name">求职招聘</div>
+                    <div class="category-topic">3500主题</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容区 -->
+    <section class="content-section">
+        <div class="container content-grid">
+            <!-- 左侧帖子列表 -->
+            <main>
+                <div class="section-header">
+                    <h2 class="section-title">最新热门讨论</h2>
+                    <a href="#" class="section-more">更多帖子 →</a>
+                </div>
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-tag">建模技巧</span>
+                        <span class="post-date">2025-01-15</span>
+                    </div>
+                    <h3 class="post-title"><a href="#">Maya 2026 新版本功能解析：流畅建模体验再升级</a></h3>
+                    <p class="post-excerpt">全新的对称雕刻工具集，配合改进的Retopology算法，让角色建模流程更加顺畅。本教程带你快速了解这些新特性如何应用到实际项目中。</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">CG</div>
+                            <span class="author-name">CG老王</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>👁 2.3k</span>
+                            <span>💬 45</span>
+                            <span>👍 120</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-tag">动画问答</span>
+                        <span class="post-date">2025-01-14</span>
+                    </div>
+                    <h3 class="post-title"><a href="#">角色走路循环总是很僵硬？分享几个实用修正思路</a></h3>
+                    <p class="post-excerpt">很多新手在制作走路循环时容易忽略重心转移和手臂摆动的自然节奏。结合参考视频逐帧分析，能快速找到问题所在并改善动画质感。</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">阿</div>
+                            <span class="author-name">阿泽动画师</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>👁 1.8k</span>
+                            <span>💬 32</span>
+                            <span>👍 88</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-tag">灯光渲染</span>
+                        <span class="post-date">2025-01-14</span>
+                    </div>
+                    <h3 class="post-title"><a href="#">Arnold 渲染器优化指南：减少噪点的五种实用方法</a></h3>
+                    <p class="post-excerpt">采样值不是越高越好，合理分配不同类型的采样配合降噪功能，才能在不牺牲渲染速度的前提下获得干净画面。来交流你的渲染经验吧。</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">渲</div>
+                            <span class="author-name">渲染小能手</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>👁 3.1k</span>
+                            <span>💋 58</span>
+                            <span>👍 210</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-tag">插件资源</span>
+                        <span class="post-date">2025-01-13</span>
+                    </div>
+                    <h3 class="post-title"><a href="#">推荐几款提升Maya工作效率的免费插件合集</a></h3>
+                    <p class="post-excerpt">从快速UV展开到一键批量渲染，这些免费开源工具能帮你简化重复操作，把更多时间留给创意本身。附安装配置说明。</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">工</div>
+                            <span class="author-name">工具控小王</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>👁 4.2k</span>
+                            <span>💬 76</span>
+                            <span>👍 340</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-tag">行业资讯</span>
+                        <span class="post-date">2025-01-12</span>
+                    </div>
+                    <h3 class="post-title"><a href="#">2025年三维动画行业趋势与就业方向分析</a></h3>
+                    <p class="post-excerpt">虚拟制片、实时渲染与AI辅助工具正在改变制作流程。从论坛多位从业者的分享中，我们整理了目前市场对三维人才技能的新要求。</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">业</div>
+                            <span class="author-name">行业观察员</span>
+                        </div>
+                        <div class="post-stats">
+                            <span>👁 5.6k</span>
+                            <span>💬 120</span>
+                            <span>👍 430</span>
+                        </div>
+                    </div>
+                </article>
+            </main>
+
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <div class="widget">
+                    <h3 class="widget-title">🔥 本周热帖</h3>
+                    <ul class="hot-list">
+                        <li>
+                            <span class="hot-rank top">1</span>
+                            <a href="#" class="hot-link">Maya 2026安装包下载与破解版风险说明</a>
+                        </li>
+                        <li>
+                            <span class="hot-rank top">2</span>
+                            <a href="#" class="hot-link">角色脸部绑定进阶教程：blendshape与修型</a>
+                        </li>
+                        <li>
+                            <span class="hot-rank top">3</span>
+                            <a href="#" class="hot-link">小白求助：Maya界面布局乱了怎么恢复？</a>
+                        </li>
+                        <li>
+                            <span class="hot-rank">4</span>
+                            <a href="#" class="hot-link">XGen毛发制作全流程经验分享</a>
+                        </li>
+                        <li>
+                            <span class="hot-rank">5</span>
+                            <a href="#" class="hot-link">Maya模型导入Unity后材质丢失的解决办法</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3 class="widget-title">📦 资源推荐</h3>
+                    <ul class="resource-list">
+                        <li><a href="#">Maya 常用快捷键速查表</a><span class="resource-type">PDF</span></li>
+                        <li><a href="#">50套高质量HDRI环境贴图</a><span class="resource-type">素材</span></li>
+                        <li><a href="#">角色绑定Rigging基础脚本集</a><span class="resource-type">脚本</span></li>
+                        <li><a href="#">Substance到Maya的PBR桥接工具</a><span class="resource-type">插件</span></li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3 class="widget-title">👥 社区达人榜</h3>
+                    <ul class="hot-list">
+                        <li>
+                            <span class="hot-rank top">1</span>
+                            <div>
+                                <a href="#" class="hot-link">模型师Ken</a>
+                                <div style="font-size:0.8rem;color:#94a3b8;">建模精模 · 帮助贴 320+</div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="hot-rank top">2</span>
+                            <div>
+                                <a href="#" class="hot-link">动捕调试员</a>
+                                <div style="font-size:0.8rem;color:#94a3b8;">绑定与动捕 · 帮助贴 280+</div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="hot-rank top">3</span>
+                            <div>
+                                <a href="#" class="hot-link">渲染农夫</a>
+                                <div style="font-size:0.8rem;color:#94a3b8;">Arnold渲染 · 帮助贴 240+</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- 教程推荐 -->
+    <section class="tutorial-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">精选系统教程</h2>
+                <a href="#" class="section-more">全部教程 →</a>
+            </div>
+            <div class="tutorial-grid">
+                <div class="tutorial-card">
+                    <span class="tutorial-level">入门</span>
+                    <h3 class="tutorial-title">Maya 零基础入门：界面与基础操作</h3>
+                    <p class="tutorial-desc">从视图导航、物体创建到基础变换，帮助你快速熟悉Maya的操作逻辑，建立三维空间感。</p>
+                    <a href="#" class="tutorial-link">开始学习 →</a>
+                </div>
+                <div class="tutorial-card">
+                    <span class="tutorial-level mid">进阶</span>
+                    <h3 class="tutorial-title">多边形建模实战：硬表面武器制作</h3>
+                    <p class="tutorial-desc">以科幻武器为例，讲解硬表面建模的拓扑思路、卡线技巧与细节处理方法。</p>
+                    <a href="#" class="tutorial-link">开始学习 →</a>
+                </div>
+                <div class="tutorial-card">
+                    <span class="tutorial-level mid">进阶</span>
+                    <h3 class="tutorial-title">角色骨骼绑定与蒙皮权重</h3>
+                    <p class="tutorial-desc">从创建骨骼到权重绘制，掌握二足角色绑定的核心流程与常见问题修复。</p>
+                    <a href="#" class="tutorial-link">开始学习 →</a>
+                </div>
+                <div class="tutorial-card">
+                    <span class="tutorial-level adv">高级</span>
+                    <h3 class="tutorial-title">Arnold 写实材质与灯光营造</h3>
+                    <p class="tutorial-desc">深入理解PBR材质原理，学习利用光影讲故事，渲染出照片级的图像作品。</p>
+                    <a href="#" class="tutorial-link">开始学习 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ 板块 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header" style="justify-content:center;">
+                <h2 class="section-title" style="padding-left:0;text-align:center;">新手常见问题</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">Maya和3ds Max有什么区别？我该学哪个？</div>
+                    <div class="faq-answer">Maya在角色动画、绑定、影视特效方面更具优势，是影视和游戏动画的主流工具；3ds Max在室内设计、建筑可视化和游戏建模方面也有广泛应用。如果你是偏动画或影视方向，建议优先学习Maya；如果偏室内或产品可视化，Max可能更合适。</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">maya论坛如何快速找到我想要的教程？</div>
+                    <div class="faq-answer">建议先使用顶部搜索框输入具体关键词，比如“角色绑定 教程”。也可以先浏览“技术交流分类”，进入相应版块查看加精帖、置顶帖。新手建议先查看“入门专区”的汇总帖。</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">学习Maya需要什么样的电脑配置？</div>
+                    <div class="faq-answer">Maya对CPU单核性能较敏感，建议使用主频较高的处理器，内存至少16GB，处理复杂场景建议32GB以上。显卡建议使用支持DX12的独立显卡，显存4GB以上为佳。SSD固态硬盘能明显提升文件加载速度。</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">论坛里可以发布自己的作品求点评吗？</div>
+                    <div class="faq-answer">当然可以。我们鼓励大家发布原创作品进行交流。建议在“作品展示”版块发帖，附上渲染图或视频链接，并简单说明制作思路和使用的技术点，这样更容易获得有针对性的建议。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-title">maya论坛</h3>
+                    <p style="color:#94a3b8;font-size:0.88rem;line-height:1.7;">致力于为三维动画爱好者提供纯净、专业、友善的交流空间。无论你是学生、爱好者还是资深从业者，这里都有你需要的资源与伙伴。</p>
+                </div>
+                <div>
+                    <h3 class="footer-title">常用链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">论坛规则</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">新手任务</a></li>
+                        <li><a href="#">积分商城</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">热门版块</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">建模交流</a></li>
+                        <li><a href="#">动画表演</a></li>
+                        <li><a href="#">渲染技术</a></li>
+                        <li><a href="#">资源分享区</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">关注我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">B站账号</a></li>
+                        <li><a href="#">QQ交流群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 maya论坛 · 三维动画技术交流社区 · 本站不提供任何盗版软件下载</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 展开收起
+        function toggleFaq(item) {
+            var answer = item.querySelector('.faq-answer');
+            var allAnswers = document.querySelectorAll('.faq-answer');
+            var allItems = document.querySelectorAll('.faq-item');
+            
+            // 关闭其他
+            allItems.forEach(function(it) {
+                if (it !== item) {
+                    it.querySelector('.faq-answer').style.display = 'none';
+                }
+            });
+            
+            // 切换当前
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+            } else {
+                answer.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+                      </html>
